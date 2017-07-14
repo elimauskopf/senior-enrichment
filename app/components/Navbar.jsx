@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 export default class Navbar extends Component {
     constructor() {
@@ -13,9 +14,13 @@ export default class Navbar extends Component {
                         <h3 className="masthead-brand">Cover</h3>
                         <nav>
                             <ul className="nav masthead-nav">
-                                <li className="active"><a href="#">Home</a></li>
-                                <li><a href="#">Sudents</a></li>
-                                <li><a href="#">Campus</a></li>
+                                <Link to={'/'}>
+                                   <li className="active">Home</li>
+                                </Link>
+                                
+                                <Link to={'/students'}>
+                                    <li>Sudents</li>
+                                </Link>
                             </ul>
                         </nav>
                     </div>

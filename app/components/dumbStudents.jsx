@@ -26,6 +26,9 @@ export default function(props){
                             <p> {student.name + '     '   +  student.email + '    ' + student.Campus.name}</p> 
                         </Link>
                          <button type="button" onClick={(event) => props.deleteStudent(event, student.id)}>Delete</button>
+                          <Link to={`/student/${student.id}/form`}>
+                             <button type="button">UPDATE</button>
+                        </Link>
                      </div>
                  ))
              }</div>
@@ -39,12 +42,17 @@ export default function(props){
                             <p> {student.name + '     '   +  student.email + student.Campus.name}</p> 
                         </Link>
                          <button type="button" onClick={(event) => props.deleteStudent(event, student.id)}>Delete</button>
-                         <button type="button">Update</button>
+                         <Link to={`/student/${student.id}/form`}>
+                             <button type="button">UPDATE</button>
+                        </Link>
+                         
                      </div>
                  ))
              }</div>
              )}
-            
+             <Link to={'/student/form'}>
+                 <button type="button">CREATE NEW STUDENT</button>
+            </Link>
              
         </div>
 

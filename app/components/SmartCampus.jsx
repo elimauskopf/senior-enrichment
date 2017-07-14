@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import dumbCampus from './DumbCampus'
 import {thunkDeleteCampus} from '../reducers/Campus'
 
-console.log('SMARRT', dumbCampus)
+//console.log('SMARRT', dumbCampus)
 
 const mapStateToProps = function(state) {
     return {

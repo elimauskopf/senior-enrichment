@@ -68,7 +68,7 @@ api.get('/hello', (req, res) => {
 
 	//CREATE NEW STUDENT
 	api.post('/student', (req, res, next) => {
-		console.log(req.body);
+		//console.log(req.body);
 		Models.Student.create({name: req.body.name, email: req.body.email, CampusId: req.body.CampusId})
 		.then((newStudent) => {
 			res.send(newStudent.get({plain: true}));
@@ -79,15 +79,19 @@ api.get('/hello', (req, res) => {
 //PUT ROUTES
 
 	//UPDATE INFO FOR ONE STUDENT
-	api.put('/student', (req,res,next) => {
-		let studentPromise = Models.Student.findOne({where: {name: req.body.studentName}});
-		let campusPromise = Models.Campus.findOne({where: {name: req.body.campusName}});
-
-		Promise.all([studentPromise,campusPromise])
-		.then((result) =>{
-			console.log(result);
+	api.put('/student/:id', (req,res,next) => {
+		console.log('IN PUT')
+		console.log(req.body)
+		Models.Student.update(req.body, {
+			where: {id: req.params.id},
+			returning: true,
+			plain: true
 		})
-		
+		.then(updatedStudent => {
+			console.log(updatedStudent[1].dataValues)
+			res.send(updatedStudent[1].dataValues)
+		})
+		.catch(next);
 	})
 	
 
@@ -105,7 +109,7 @@ api.get('/hello', (req, res) => {
 			}
 			)
 			.then((updatedCampus) =>{
-				res.send(result[1].data.values)
+				res.send(result[1].data)
 			});
 		})
 		
